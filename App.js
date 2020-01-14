@@ -1,18 +1,28 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+// we import the hooks needed
+import React, { useState } from 'react';
+// we import the Button component
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
+  const [name, setName] = useState('Arvin')
+  const [person, setPerson] = useState({name: 'Mario', age: 45})
+
+  const clickHandler = () => {
+    setName('Ryu')
+    setPerson({...person, name: 'Luigi'})
+  }
+
   return (
     <View style={styles.container}> 
-      <View style={styles.header}>
-        <Text style={styles.boldText}>Hello World!</Text>
+    
+      <Text>My name is {name}</Text>
+      <Text>His name is {person.name} and his age is {person.age}</Text>
+      {/* we created a container for the button*/}
+      <View style={styles.buttonContainer}>
+        {/* keep in mind that buttons are self closing components */}
+        <Button title='update state' onPress={clickHandler}/>
       </View>
 
-      <View style={styles.body}>
-        <Text style={styles.boldText}>Lorem ipsum dolor sit amet</Text>
-        <Text style={styles.boldText}>Lorem ipsum dolor sit amet</Text>
-        <Text style={styles.boldText}>Lorem ipsum dolor sit amet</Text>
-      </View>
     </View>
   );
 }
@@ -29,16 +39,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  header: {
-    backgroundColor: 'pink',
-    padding: 20, // this is in pixels
-  },
-  boldText: {
-    fontWeight: 'bold'
-  },
-  body: {
-    backgroundColor: 'yellow',
-    padding: 20
+  buttonContainer: {
+    marginTop: 20
   }
-
 });
